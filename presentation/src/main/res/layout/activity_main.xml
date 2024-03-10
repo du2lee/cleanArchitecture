@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="vm" type="com.ehyundai.project.plays.view.main.MainViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.main.MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_common"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="30dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:layout_constraintEnd_toStartOf="@id/iv_group"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_search"
+                android:shadowColor="@color/main_color"
+                android:layout_marginEnd="15dp"/>
+
+            <ImageView
+                android:id="@+id/iv_group"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:layout_constraintEnd_toStartOf="@id/iv_setting"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_group"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:shadowColor="@color/main_color"
+                android:layout_marginEnd="15dp"/>
+
+            <ImageView
+                android:id="@+id/iv_setting"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_setting"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:shadowColor="@color/main_color"
+                android:layout_marginEnd="20dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_main"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/tl_main"
+            app:layout_constraintTop_toBottomOf="@id/cl_common" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_main"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_main_tab_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vp_main"
+            app:tabIconTint="@color/sub_color"
+            app:tabIndicatorColor="@color/sub_color" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+
