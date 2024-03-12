@@ -1,7 +1,9 @@
 package com.ehyundai.project.data.mapper
 
 import com.ehyundai.project.data.model.club.ClubEntity
+import com.ehyundai.project.data.model.company.CompanyEntity
 import com.ehyundai.project.domain.model.Club
+import com.ehyundai.project.domain.model.Company
 
 /**
  * Data Entity to Data Model
@@ -20,6 +22,16 @@ fun mapperToClub(clubs: List<ClubEntity>): List<Club> {
             it.logo,
             it.members,
             it.date
+        )
+    }
+}
+
+fun mapperToCompany(companys: List<CompanyEntity>): List<Company> {
+    return companys.toList().map {
+        Company(
+            it.companyNo,
+            it.name,
+            it.imgPath
         )
     }
 }

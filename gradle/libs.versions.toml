@@ -7,6 +7,7 @@ converterGson = "2.9.0"
 databindingRuntime = "8.3.0"
 databindingRuntimeVersion = "8.3.0"
 fragmentKtx = "1.6.2"
+glide = "4.13.0"
 gravitysnaphelper = "2.2.1"
 gson = "2.9.0"
 hiltAndroid = "2.44"
@@ -60,6 +61,8 @@ androidx-room-rxjava2 = { module = "androidx.room:room-rxjava2", version.ref = "
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 gravitysnaphelper = { module = "com.github.rubensousa:gravitysnaphelper", version.ref = "gravitysnaphelper" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }

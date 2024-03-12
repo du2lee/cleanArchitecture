@@ -2,15 +2,22 @@ package com.ehyundai.project.plays.view.home
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.ehyundai.project.plays.view.Club
 import com.ehyundai.project.plays.view.ClubAdapter
 import com.ehyundai.project.plays.R
 import com.ehyundai.project.plays.databinding.FragmentHomeBinding
 import com.ehyundai.project.plays.view.main.MainActivity
+import com.ehyundai.project.plays.view.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,6 +25,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var context: Context
+    private val viewModel by activityViewModels<MainViewModel>()
 
     /** dummy Data -> API 생성 시 삭제 */
 
@@ -46,11 +54,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding.viewModel = viewModel
 
-        for (i in 0 until 10){
-            val view = LayoutInflater.from(context).inflate(R.layout.item_company_view, null)
-            binding.llSortCompany.addView(view)
-        }
+        initViewModelCallback()
 
         val adapter = ClubAdapter(context, groupList)
         binding.lvClub.adapter = adapter
@@ -68,5 +74,41 @@ class HomeFragment : Fragment() {
 //        }
 
         return binding.root
+    }
+
+    private fun initViewModelCallback() {
+        with(viewModel){
+            initCompany.observe(viewLifecycleOwner, Observer {
+                setCompanyList()
+            })
+        }
+    }
+
+    private fun setCompanyList(){
+        val companys = viewModel.getCompanyList()
+        Log.i("duhui", companys.toString())
+
+        binding.llSortCompany.removeAllViews()
+
+        for (i in 0 until 3){
+            val company = companys?.get(i)
+            val view = LayoutInflater.from(context).inflate(R.layout.item_company_view, null)
+            val img = view.findViewById<ImageView>(R.id.search_brand_hot_brand_iv)
+            val name = view.findViewById<TextView>(R.id.search_brand_hot_brand_tv)
+            Glide.with(this)
+                .load(company?.imgPath) // 불러올 이미지 url
+    //                .placeholder(defaultImage) // 이미지 로딩 시작하기 전 표시할 이미지
+    //                .error(defaultImage) // 로딩 에러 발생 시 표시할 이미지
+    //                .fallback(defaultImage) // 로드할 url 이 비어있을(null 등) 경우 표시할 이미지
+                .into(img)
+
+            name.text = company?.name
+
+            view.setOnClickListener{
+                // 클릭 시 해당 동아리 리스트 노출
+            }
+
+            binding.llSortCompany.addView(view)
+        }
     }
 }

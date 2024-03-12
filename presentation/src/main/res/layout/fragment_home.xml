@@ -5,10 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-<!--        <variable-->
-<!--            name="viewModel"-->
-<!--            type="com.ehyundai.project.club.view.search.SearchViewModel" />-->
+        <variable
+            name="viewModel"
+            type="com.ehyundai.project.plays.view.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +52,6 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.9" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
