@@ -15,6 +15,6 @@ import io.reactivex.Single
 interface ClubLocalDataSource {
     fun insertClubs(clubs: List<ClubEntity>): Completable
     fun getAllClubs(): Single<List<ClubEntity>>
-    fun getSearchClubs(clubNo: String): Single<List<ClubEntity>>
+    fun getSearchClubs(company: String): Single<List<ClubEntity>>
     fun deleteAllClubs(): Completable
 }

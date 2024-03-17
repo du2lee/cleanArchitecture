@@ -29,15 +29,14 @@ class MainViewModel @Inject constructor(
     val clubList: LiveData<ArrayList<Club>> get() = _clubList
 
     private val _companyList = MutableLiveData<ArrayList<Company>>()
-    val companyList: LiveData<ArrayList<Company>> get() = _companyList
+    private val companyList: LiveData<ArrayList<Company>> get() = _companyList
 
     init {
-        Log.i("duhui", "start")
         getCompany()
-        Log.i("duhui", "end")
+        getClub()
     }
 
-    fun getClub(){
+    private fun getClub(){
         compositeDisposable.add(
             getClubsUseCase()
                 .subscribeOn(Schedulers.io())
@@ -53,9 +52,7 @@ class MainViewModel @Inject constructor(
                         // 값이 제로
                     } else {
                         // 성공
-                        Log.i("duhui", "success")
                         _clubList.value = clubs as ArrayList<Club>
-                        Log.i("duhui", _clubList.value.toString())
                     }
                 }, {
                     // 에러
@@ -63,7 +60,7 @@ class MainViewModel @Inject constructor(
         )
     }
 
-    fun getCompany(){
+    private fun getCompany(){
         compositeDisposable.add(
             getCompanyUseCase()
                 .subscribeOn(Schedulers.io())
@@ -74,7 +71,6 @@ class MainViewModel @Inject constructor(
                     if (companys.isEmpty()) {
                         // 값이 제로
                     } else {
-                        Log.i("duhui1", "success")
                         _companyList.value = companys as ArrayList<Company>
                         _initCompany.value = Unit
                     }
@@ -85,8 +81,33 @@ class MainViewModel @Inject constructor(
     }
 
     fun getCompanyList(): ArrayList<Company>? {
-        Log.i("duhui2", "getCompanyList")
         return companyList.value
+    }
+
+    fun getClubList(): ArrayList<Club>? {
+        return clubList.value
+    }
+
+    fun clickCompany(companyNo: Int, company: String){
+        compositeDisposable.add(
+            getClubsUseCase.clickCompany(companyNo, company)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    // 로딩바 노출
+                }
+                .doAfterTerminate {
+                    // 로딩바 숨기기
+                }
+                .subscribe { clubs ->
+                    if (clubs.isEmpty()) {
+                        // 값이 제로
+                    } else {
+                        // 성공
+                        _clubList.value = clubs as ArrayList<Club>
+                    }
+                }
+        )
     }
 }
 

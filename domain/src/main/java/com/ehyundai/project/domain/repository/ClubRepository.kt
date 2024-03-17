@@ -12,4 +12,6 @@ import io.reactivex.Single
 interface ClubRepository {
     fun getClubs(): Flowable<List<Club>>
     fun getRemoteClubs(): Single<List<Club>>
+    fun getClub(companyNo: Int, company: String) : Flowable<List<Club>>
+    fun getRemoteClub(companyNo: Int): Single<List<Club>>
 }

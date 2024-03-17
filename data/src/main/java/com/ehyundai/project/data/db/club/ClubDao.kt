@@ -17,8 +17,8 @@ interface ClubDao {
     @Query("SELECT * FROM club")
     fun getAllClubs(): Single<List<ClubEntity>>
 
-    @Query("SELECT * FROM club WHERE clubNo LIKE '%' || :clubNo || '%'")
-    fun getClubsByClubNo(clubNo: String): Single<List<ClubEntity>>
+    @Query("SELECT * FROM club WHERE company LIKE '%' || :company || '%'")
+    fun getClubsByCompany(company: String): Single<List<ClubEntity>>
 
     @Query("DELETE FROM club")
     fun deleteAllClubs(): Completable

@@ -9,5 +9,6 @@ import io.reactivex.Single
  */
 //@DefineComponent(parent = ActivityComponent::class)
 interface ClubRemoteDataSource {
-    fun getSearchClubs(): Single<ClubResponse>
+    fun getSearchClubs(companyNo: Int): Single<ClubResponse>
+    fun getSearchAll(): Single<ClubResponse>
 }

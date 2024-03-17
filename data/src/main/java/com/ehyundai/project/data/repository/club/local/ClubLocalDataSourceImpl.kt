@@ -13,8 +13,8 @@ class ClubLocalDataSourceImpl @Inject constructor(private val clubDao: ClubDao) 
     override fun getAllClubs(): Single<List<ClubEntity>> =
         clubDao.getAllClubs()
 
-    override fun getSearchClubs(clubNo: String): Single<List<ClubEntity>> =
-        clubDao.getClubsByClubNo(clubNo)
+    override fun getSearchClubs(company: String): Single<List<ClubEntity>> =
+        clubDao.getClubsByCompany(company)
 
     override fun deleteAllClubs(): Completable =
         clubDao.deleteAllClubs()

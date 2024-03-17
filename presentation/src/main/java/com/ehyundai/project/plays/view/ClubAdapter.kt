@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.bumptech.glide.Glide
+import com.ehyundai.project.domain.model.Club
 import com.ehyundai.project.plays.databinding.ItemListViewBinding
-import com.ehyundai.project.plays.view.Club
 
 class ClubAdapter(val context: Context, private val groupList:ArrayList<Club>) : BaseAdapter() {
 
@@ -23,10 +24,10 @@ class ClubAdapter(val context: Context, private val groupList:ArrayList<Club>) :
 
         val group = groupList[position]
 
-        logo.setImageResource(group.logo)
+        Glide.with(context).load(group.logo).into(logo)
         name.text = group.name
         date.text = "Since " + group.date
-        info.text = group.info
+        info.text = group.company + " | 멤버" + group.members
 
         return mBinding!!.root
     }

@@ -31,12 +31,25 @@ class ClubRepositoryImpl @Inject constructor(
     }
 
     override fun getRemoteClubs(): Single<List<Club>> {
-        return clubRemoteDataSource.getSearchClubs()
+        return clubRemoteDataSource.getSearchAll()
             .flatMap {
                 // insertClubs 는 ClubEntity 로 localDB에 insert.
                 // andThen 연산자를 통해 localDB에 insert 한 Data 들을 Mapper 클래스를 사용하여 Club type 으로 mapping 하고 해당 list 를 return
                 clubLocalDataSource.insertClubs(it.data).
                         andThen(Single.just(mapperToClub(it.data)))
+            }
+    }
+
+    override fun getClub(companyNo: Int, company: String): Flowable<List<Club>> {
+        return clubLocalDataSource.getSearchClubs(company)
+            .onErrorReturn { listOf() }
+            .flatMapPublisher { localClubs -> Single.just(mapperToClub(localClubs)).toFlowable() }
+    }
+
+    override fun getRemoteClub(companyNo: Int): Single<List<Club>> {
+        return clubRemoteDataSource.getSearchClubs(companyNo)
+            .flatMap {
+                Single.just(mapperToClub(it.data))
             }
     }
 }
