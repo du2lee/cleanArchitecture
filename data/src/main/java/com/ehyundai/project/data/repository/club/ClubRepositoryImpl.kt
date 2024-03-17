@@ -40,7 +40,7 @@ class ClubRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun getClub(companyNo: Int, company: String): Flowable<List<Club>> {
+    override fun getClub(company: String): Flowable<List<Club>> {
         return clubLocalDataSource.getSearchClubs(company)
             .onErrorReturn { listOf() }
             .flatMapPublisher { localClubs -> Single.just(mapperToClub(localClubs)).toFlowable() }

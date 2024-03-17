@@ -88,9 +88,9 @@ class MainViewModel @Inject constructor(
         return clubList.value
     }
 
-    fun clickCompany(companyNo: Int, company: String){
+    fun clickCompany(company: String){
         compositeDisposable.add(
-            getClubsUseCase.clickCompany(companyNo, company)
+            getClubsUseCase.clickCompany(company)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {

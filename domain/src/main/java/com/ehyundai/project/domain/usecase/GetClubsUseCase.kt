@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetClubsUseCase @Inject constructor(private val repository: ClubRepository) {
     operator fun invoke(): Flowable<List<Club>> = repository.getClubs()
 
-    fun clickCompany(companyNo: Int, company: String): Flowable<List<Club>> = repository.getClub(companyNo, company)
+    fun clickCompany(company: String): Flowable<List<Club>> = repository.getClub(company)
 }

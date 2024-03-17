@@ -64,17 +64,12 @@ class HomeFragment : Fragment() {
             val view = LayoutInflater.from(context).inflate(R.layout.item_company_view, null)
             val img = view.findViewById<ImageView>(R.id.search_brand_hot_brand_iv)
             val name = view.findViewById<TextView>(R.id.search_brand_hot_brand_tv)
-            Glide.with(this)
-                .load(company?.imgPath) // 불러올 이미지 url
-    //                .placeholder(defaultImage) // 이미지 로딩 시작하기 전 표시할 이미지
-    //                .error(defaultImage) // 로딩 에러 발생 시 표시할 이미지
-    //                .fallback(defaultImage) // 로드할 url 이 비어있을(null 등) 경우 표시할 이미지
-                .into(img)
 
+            Glide.with(this).load(company?.imgPath).into(img)
             name.text = company?.name
 
             view.setOnClickListener{
-                viewModel.clickCompany(1, name.text.toString())
+                viewModel.clickCompany(name.text.toString())
             }
             binding.llSortCompany.addView(view)
         }
