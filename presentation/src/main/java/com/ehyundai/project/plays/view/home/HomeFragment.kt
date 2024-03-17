@@ -41,9 +41,14 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.init()
+    }
+
     private fun initViewModelCallback() {
         with(viewModel){
-            initCompany.observe(viewLifecycleOwner, Observer {
+            companyList.observe(viewLifecycleOwner, Observer {
                 setCompanyList()
             })
             clubList.observe(viewLifecycleOwner) {

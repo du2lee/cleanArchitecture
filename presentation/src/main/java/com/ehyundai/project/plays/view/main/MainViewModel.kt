@@ -19,19 +19,19 @@ class MainViewModel @Inject constructor(
     private val getClubsUseCase: GetClubsUseCase,
     private val getCompanyUseCase: GetCompanyUseCase
 ) : ViewModel() {
-
-    private val _initCompany = MutableLiveData<Unit>()
-    val initCompany: LiveData<Unit> = _initCompany
-
     private val compositeDisposable = CompositeDisposable()
 
     private val _clubList = MutableLiveData<ArrayList<Club>>()
     val clubList: LiveData<ArrayList<Club>> get() = _clubList
 
     private val _companyList = MutableLiveData<ArrayList<Company>>()
-    private val companyList: LiveData<ArrayList<Company>> get() = _companyList
+    val companyList: LiveData<ArrayList<Company>> get() = _companyList
 
     init {
+        init()
+    }
+
+    fun init(){
         getCompany()
         getClub()
     }
@@ -41,22 +41,10 @@ class MainViewModel @Inject constructor(
             getClubsUseCase()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {
-                    // 로딩바 노출
-                }
-                .doAfterTerminate {
-                    // 로딩바 숨기기
-                }
                 .subscribe({ clubs ->
-                    if (clubs.isEmpty()) {
-                        // 값이 제로
-                    } else {
-                        // 성공
-                        _clubList.value = clubs as ArrayList<Club>
-                    }
-                }, {
-                    // 에러
-                })
+                    if (clubs.isEmpty()) {}
+                    else { _clubList.value = clubs as ArrayList<Club> }
+                }, { })
         )
     }
 
@@ -65,18 +53,22 @@ class MainViewModel @Inject constructor(
             getCompanyUseCase()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {}
-                .doAfterTerminate {}
                 .subscribe({ companys ->
-                    if (companys.isEmpty()) {
-                        // 값이 제로
-                    } else {
-                        _companyList.value = companys as ArrayList<Company>
-                        _initCompany.value = Unit
-                    }
-                }, {
-                    // 에러
-                })
+                    if (companys.isEmpty()) {}
+                    else {_companyList.value = companys as ArrayList<Company>}
+                }, { })
+        )
+    }
+
+    fun clickCompany(company: String){
+        compositeDisposable.add(
+            getClubsUseCase.clickCompany(company)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { clubs ->
+                    if (clubs.isEmpty()) {}
+                    else {_clubList.value = clubs as ArrayList<Club> }
+                }
         )
     }
 
@@ -86,28 +78,6 @@ class MainViewModel @Inject constructor(
 
     fun getClubList(): ArrayList<Club>? {
         return clubList.value
-    }
-
-    fun clickCompany(company: String){
-        compositeDisposable.add(
-            getClubsUseCase.clickCompany(company)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {
-                    // 로딩바 노출
-                }
-                .doAfterTerminate {
-                    // 로딩바 숨기기
-                }
-                .subscribe { clubs ->
-                    if (clubs.isEmpty()) {
-                        // 값이 제로
-                    } else {
-                        // 성공
-                        _clubList.value = clubs as ArrayList<Club>
-                    }
-                }
-        )
     }
 }
 
