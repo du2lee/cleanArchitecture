@@ -1,6 +1,7 @@
 package com.ehyundai.project.plays.view.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.ehyundai.project.plays.view.ClubAdapter
 import com.ehyundai.project.plays.R
 import com.ehyundai.project.plays.databinding.FragmentHomeBinding
+import com.ehyundai.project.plays.view.club.CreateClubActivity
 import com.ehyundai.project.plays.view.main.MainActivity
 import com.ehyundai.project.plays.view.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,6 +41,12 @@ class HomeFragment : Fragment() {
         binding.viewModel = viewModel
 
         initViewModelCallback()
+
+        binding.btnRegisterClub.setOnClickListener{
+            val intent = Intent(activity, CreateClubActivity::class.java)
+            startActivity(intent)
+        }
+
         return binding.root
     }
 

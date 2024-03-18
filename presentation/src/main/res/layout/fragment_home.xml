@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.ehyundai.project.plays.view.main.MainViewModel" />
@@ -38,6 +38,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent="0.8"
             app:layout_constraintTop_toBottomOf="@id/hsv_sort_company" />
+
+        <Button
+            android:id="@+id/btn_register_club"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ 동아리"
+            app:layout_constraintTop_toTopOf="@id/guide_bottom"
+            app:layout_constraintEnd_toEndOf="@id/guide_right" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_right"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_top"
