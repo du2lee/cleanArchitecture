@@ -27,6 +27,9 @@ class MainViewModel @Inject constructor(
     private val _companyList = MutableLiveData<ArrayList<Company>>()
     val companyList: LiveData<ArrayList<Company>> get() = _companyList
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> get() = _loading
+
     init {
         init()
     }
@@ -41,6 +44,8 @@ class MainViewModel @Inject constructor(
             getClubsUseCase()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {_loading.postValue(true)}
+                .doAfterTerminate {_loading.postValue(false)}
                 .subscribe({ clubs ->
                     if (clubs.isEmpty()) {}
                     else { _clubList.value = clubs as ArrayList<Club> }
