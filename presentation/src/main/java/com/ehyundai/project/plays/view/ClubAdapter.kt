@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.ehyundai.project.domain.model.Club
 import com.ehyundai.project.plays.databinding.ItemListViewBinding
 
-class ClubAdapter(val context: Context, private val groupList:ArrayList<Club>) : BaseAdapter() {
+class ClubAdapter(val context: Context, private val groupList: ArrayList<Club>) : BaseAdapter() {
 
     private var mBinding: ItemListViewBinding? = null
     private val binding get() = mBinding!!
@@ -17,6 +17,7 @@ class ClubAdapter(val context: Context, private val groupList:ArrayList<Club>) :
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         mBinding = ItemListViewBinding.inflate(LayoutInflater.from(context))
 
+        val view = binding.view
         val logo = binding.ivGroupLogo
         val name = binding.tvGroupName
         val date = binding.tvGroupDate
@@ -24,6 +25,7 @@ class ClubAdapter(val context: Context, private val groupList:ArrayList<Club>) :
 
         val group = groupList[position]
 
+        view.tag = group.clubNo
         Glide.with(context).load(group.logo).into(logo)
         name.text = group.name
         date.text = "Since " + group.date

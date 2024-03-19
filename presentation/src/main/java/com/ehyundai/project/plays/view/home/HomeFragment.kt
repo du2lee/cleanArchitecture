@@ -8,14 +8,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.ehyundai.project.plays.view.ClubAdapter
 import com.ehyundai.project.plays.R
 import com.ehyundai.project.plays.databinding.FragmentHomeBinding
+import com.ehyundai.project.plays.view.club.ClubActivity
 import com.ehyundai.project.plays.view.club.CreateClubActivity
 import com.ehyundai.project.plays.view.main.MainActivity
 import com.ehyundai.project.plays.view.main.MainViewModel
@@ -98,17 +99,13 @@ class HomeFragment : Fragment() {
         binding.lvClub.adapter = null
         binding.lvClub.adapter = adapter
 
-        /**
-         * 클릭 이벤트
-         */
-//        binding.lvClub.setOnItemClickListener { parent: AdapterView<*>, view: View, position: Int, id: Long ->
-//            val item = groupList.get(position)
-//
-//            val intent = Intent(context, ClubActivity::class.java)
-//            intent.putExtra("name", item.name)
-//            intent.putExtra("date", item.date)
-//            startActivity(intent)
-//        }
+        // 클릭 이벤트
+        binding.lvClub.setOnItemClickListener { parent: AdapterView<*>, view: View, position: Int, id: Long ->
+            val intent = Intent(context, ClubActivity::class.java)
+
+            intent.putExtra("clubNo", view.tag.toString().toInt())
+            startActivity(intent)
+        }
     }
 
     private fun setLoadingBar(flag: Boolean) {
