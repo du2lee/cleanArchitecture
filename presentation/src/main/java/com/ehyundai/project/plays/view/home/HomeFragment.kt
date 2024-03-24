@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
-        binding.viewModel = viewModel
+        binding.vm = viewModel
 
         initViewModelCallback()
 

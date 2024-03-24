@@ -70,7 +70,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="현대 IT&E | 볼빵빵 짱구" />
+                        android:text="현대 IT&amp;E | 볼빵빵 짱구" />
 
                 </LinearLayout>
 

@@ -2,7 +2,7 @@
 <layout>
 
     <data>
-
+        <variable name="vm" type="com.ehyundai.project.plays.view.club.ClubViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="슛솔랭"
+            android:text="@{vm.clubInfo.name}"
             android:textSize="25dp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/cl_common" />
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Since 2022. 08. 08"
+            android:text="@{`Since ` + vm.clubInfo.date}"
             android:textColor="#BAC0CA"
             app:layout_constraintTop_toBottomOf="@id/tv_club_title" />
 

@@ -2,14 +2,19 @@ package com.ehyundai.project.plays.view.club
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.ehyundai.project.plays.R
 import com.ehyundai.project.plays.databinding.ActivityClubBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ClubActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityClubBinding
+    private val viewModel: ClubViewModel by viewModels()
     private lateinit var context: Context
     private var clubNo: Int = 1
 
@@ -17,11 +22,15 @@ class ClubActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityClubBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        clubNo = intent.getIntExtra("clubNo", 1)
+        binding.lifecycleOwner = this
+        binding.vm = viewModel
 
         binding.vpClub.adapter = ClubAdapter(supportFragmentManager, lifecycle)
         drawTabLayout()
+
+        //initViewModelCallback()
+        clubNo = intent.getIntExtra("clubNo", 1)
+        viewModel.getClubInfo(clubNo)
         context = this
     }
 

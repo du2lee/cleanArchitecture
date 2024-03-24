@@ -1,6 +1,7 @@
 package com.ehyundai.project.domain.repository
 
 import com.ehyundai.project.domain.model.Club
+import com.ehyundai.project.domain.model.ClubInfo
 import io.reactivex.Flowable
 import io.reactivex.Single
 
@@ -14,4 +15,6 @@ interface ClubRepository {
     fun getRemoteClubs(): Single<List<Club>>
     fun getClub(company: String) : Flowable<List<Club>>
     fun getRemoteClub(companyNo: Int): Single<List<Club>>
+
+    fun getClubInfo(clubNo: Int): Single<ClubInfo>
 }

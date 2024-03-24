@@ -1,5 +1,6 @@
 package com.ehyundai.project.data.repository.club.remote
 
+import com.ehyundai.project.data.model.club.ClubInfoResponse
 import com.ehyundai.project.data.model.club.ClubResponse
 import io.reactivex.Single
 
@@ -11,4 +12,6 @@ import io.reactivex.Single
 interface ClubRemoteDataSource {
     fun getSearchClubs(companyNo: Int): Single<ClubResponse>
     fun getSearchAll(): Single<ClubResponse>
+
+    fun getSearchClubInfo(clubNo: Int): Single<ClubInfoResponse>
 }

@@ -12,3 +12,14 @@ data class ClubResponse (
     @SerializedName("data")
     val data: List<ClubEntity>,
 )
+
+
+@Serializable
+data class ClubInfoResponse (
+    @SerializedName("status")
+    val status: String,
+    @SerializedName("code")
+    val code: String,
+    @SerializedName("data")
+    val data: ClubInfoEntity,
+)

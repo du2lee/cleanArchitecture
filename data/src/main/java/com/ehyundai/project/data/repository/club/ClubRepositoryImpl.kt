@@ -1,9 +1,12 @@
 package com.ehyundai.project.data.repository.club
 
+import android.util.Log
 import com.ehyundai.project.data.mapper.mapperToClub
+import com.ehyundai.project.data.mapper.mapperToClubInfo
 import com.ehyundai.project.data.repository.club.local.ClubLocalDataSource
 import com.ehyundai.project.data.repository.club.remote.ClubRemoteDataSource
 import com.ehyundai.project.domain.model.Club
+import com.ehyundai.project.domain.model.ClubInfo
 import com.ehyundai.project.domain.repository.ClubRepository
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -51,5 +54,11 @@ class ClubRepositoryImpl @Inject constructor(
             .flatMap {
                 Single.just(mapperToClub(it.data))
             }
+    }
+
+    override fun getClubInfo(clubNo: Int): Single<ClubInfo> {
+        return clubRemoteDataSource.getSearchClubInfo(clubNo).flatMap {
+            Single.just(mapperToClubInfo((it.data)))
+        }
     }
 }

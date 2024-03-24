@@ -13,3 +13,13 @@ data class Club(
     val members : String,
     val date : String,
 )
+
+data class ClubInfo(
+    val clubNo: Int,
+    val company: String,
+    val name: String,
+    val clubDesc: String,
+    val logo: String,
+    val date: String,
+    val members: List<String>,
+)

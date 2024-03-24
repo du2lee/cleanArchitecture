@@ -1,6 +1,8 @@
 package com.ehyundai.project.data.repository.club.remote
 
+import android.util.Log
 import com.ehyundai.project.data.api.ApiInterface
+import com.ehyundai.project.data.model.club.ClubInfoResponse
 import com.ehyundai.project.data.model.club.ClubResponse
 import io.reactivex.Single
 import javax.inject.Inject
@@ -20,5 +22,9 @@ class ClubRemoteDataSourceImpl @Inject constructor(private val apiInterface: Api
 
     override fun getSearchAll(): Single<ClubResponse> {
         return apiInterface.getSearchClubAll()
+    }
+
+    override fun getSearchClubInfo(clubNo: Int): Single<ClubInfoResponse> {
+        return apiInterface.getSearchClubInfo(clubNo)
     }
 }
