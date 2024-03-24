@@ -39,5 +39,23 @@ data class ClubInfoEntity (
     @SerializedName("createdDate")
     val date : String,
     @SerializedName("memberList")
-    val members : List<String>,
+    val members : List<MemberEntity>,
+)
+
+@Serializable
+data class MemberEntity (
+    @SerializedName("memberNo")
+    val memberNo : Int,
+    @SerializedName("memberNm")
+    val memberNm : String,
+    @SerializedName("nickname")
+    val nickname : String,
+    @SerializedName("companyNm")
+    val companyNm : String,
+    @SerializedName("role")
+    val role : String,
+    @SerializedName("profileImg")
+    val profileImg : String,
+    @SerializedName("introduction")
+    val introduction : String,
 )

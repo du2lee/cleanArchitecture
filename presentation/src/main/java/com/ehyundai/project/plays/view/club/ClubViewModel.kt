@@ -27,7 +27,7 @@ class ClubViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ club -> _clubInfo.value = club
-                    Log.i("duhui", clubInfo.value!!.name)}, { })
+                    Log.i("duhui", clubInfo.value!!.toString())}, { })
         )
     }
 }

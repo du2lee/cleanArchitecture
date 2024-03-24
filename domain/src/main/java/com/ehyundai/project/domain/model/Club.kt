@@ -21,5 +21,5 @@ data class ClubInfo(
     val clubDesc: String,
     val logo: String,
     val date: String,
-    val members: List<String>,
+    val members: List<Member>,
 )

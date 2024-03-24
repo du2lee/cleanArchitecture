@@ -2,10 +2,12 @@ package com.ehyundai.project.data.mapper
 
 import com.ehyundai.project.data.model.club.ClubEntity
 import com.ehyundai.project.data.model.club.ClubInfoEntity
+import com.ehyundai.project.data.model.club.MemberEntity
 import com.ehyundai.project.data.model.company.CompanyEntity
 import com.ehyundai.project.domain.model.Club
 import com.ehyundai.project.domain.model.ClubInfo
 import com.ehyundai.project.domain.model.Company
+import com.ehyundai.project.domain.model.Member
 import io.reactivex.Single
 
 /**
@@ -35,7 +37,22 @@ fun mapperToClubInfo(club: ClubInfoEntity): ClubInfo {
         club.clubDesc,
         club.logo,
         club.date,
-        club.members)
+        mapperToMember(club.members))
+}
+
+fun mapperToMember(members: List<MemberEntity>): List<Member>{
+    return members.toList().map {
+        Member(
+            it.memberNo,
+            it.memberNm?: "미지정",
+            it.nickname?: "미지정",
+            it.companyNm?: "미지정",
+            it.role?: "미지정",
+            it.profileImg?: "미지정",
+            it.introduction?: "미지정",
+        )
+    }
+
 }
 
 fun mapperToCompany(companys: List<CompanyEntity>): List<Company> {
