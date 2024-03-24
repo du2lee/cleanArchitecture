@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+
         <variable
             name="vm"
             type="com.ehyundai.project.plays.view.club.ClubViewModel" />
@@ -58,6 +59,42 @@
                 app:layout_constraintEnd_toStartOf="@id/cl_sub_master_one"
                 app:layout_constraintStart_toStartOf="parent">
 
+                <ImageView
+                    android:id="@+id/iv_master"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_master_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="이두희"
+                    app:layout_constraintBottom_toTopOf="@id/tv_master_company"
+                    app:layout_constraintTop_toBottomOf="@id/iv_master" />
+
+                <TextView
+                    android:id="@+id/tv_master_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="이두희"
+                    app:layout_constraintBottom_toTopOf="@id/tv_master_position"
+                    app:layout_constraintTop_toBottomOf="@id/tv_master_name" />
+
+                <TextView
+                    android:id="@+id/tv_master_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="운영자"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_master_company" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,6 +104,41 @@
                 app:layout_constraintEnd_toStartOf="@id/cl_sub_master_two"
                 app:layout_constraintStart_toEndOf="@id/cl_master">
 
+                <ImageView
+                    android:id="@+id/iv_sub_master_one"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_sub_master_one_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="이두희"
+                    app:layout_constraintBottom_toTopOf="@id/tv_sub_master_one_company"
+                    app:layout_constraintTop_toBottomOf="@id/iv_sub_master_one" />
+
+                <TextView
+                    android:id="@+id/tv_sub_master_one_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="이두희"
+                    app:layout_constraintBottom_toTopOf="@id/tv_sub_master_one_position"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sub_master_one_name" />
+
+                <TextView
+                    android:id="@+id/tv_sub_master_one_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="부운영자"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sub_master_one_company" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -75,6 +147,41 @@
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cl_sub_master_one">
+
+                <ImageView
+                    android:id="@+id/iv_sub_master_two"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_sub_master_two_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="이두희"
+                    app:layout_constraintBottom_toTopOf="@id/tv_sub_master_two_company"
+                    app:layout_constraintTop_toBottomOf="@id/iv_sub_master_two" />
+
+                <TextView
+                    android:id="@+id/tv_sub_master_two_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="이두희"
+                    app:layout_constraintBottom_toTopOf="@id/tv_sub_master_two_position"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sub_master_two_name" />
+
+                <TextView
+                    android:id="@+id/tv_sub_master_two_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="부운영자"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sub_master_two_company" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
