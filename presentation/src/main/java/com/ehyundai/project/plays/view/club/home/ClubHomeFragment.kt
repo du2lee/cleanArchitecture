@@ -11,6 +11,9 @@ import com.bumptech.glide.Glide
 import com.ehyundai.project.plays.databinding.FragmentClubHomeBinding
 import com.ehyundai.project.plays.view.club.ClubActivity
 import com.ehyundai.project.plays.view.club.ClubViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class ClubHomeFragment : Fragment() {
 
     private lateinit var binding: FragmentClubHomeBinding
