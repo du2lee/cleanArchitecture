@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.ehyundai.project.plays.databinding.FragmentPasswordBinding
@@ -34,6 +35,7 @@ class PasswordFragment : Fragment() {
     ): View?{
         binding = FragmentPasswordBinding.inflate(layoutInflater)
         binding.vm = viewModel
+        setButtonName()
         clickButton()
 
         return binding.root
@@ -46,9 +48,19 @@ class PasswordFragment : Fragment() {
     }
 
     private fun clickButton() {
+
         binding.btnSignUp.setOnClickListener {
-            if (signUpActivity != null) signUpActivity?.setFragment(4)
+            if (signUpActivity != null){
+                if(viewModel.verifyPwd())
+                    signUpActivity?.setFragment(4)
+                else
+                    Toast.makeText(signUpActivity, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show()
+            }
             else if (findAccountActivity != null) findAccountActivity?.finish()
         }
+    }
+
+    private fun setButtonName(){
+        if (findAccountActivity != null) binding.btnSignUp.text = "로그인 하러가기"
     }
 }

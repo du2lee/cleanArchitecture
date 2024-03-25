@@ -3,11 +3,14 @@ package com.ehyundai.project.plays.view.login
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.ehyundai.project.plays.R
 import com.ehyundai.project.plays.databinding.FragmentClubHomeBinding
 import com.ehyundai.project.plays.databinding.FragmentNicknameBinding
@@ -36,7 +39,8 @@ class NicknameFragment : Fragment() {
     ): View? {
         binding = FragmentNicknameBinding.inflate(layoutInflater)
         binding.vm = viewModel
-        finishSignUp()
+        initViewModelCallback()
+        clickSignUp()
 
         return binding.root
     }
@@ -46,8 +50,23 @@ class NicknameFragment : Fragment() {
         parentActivity = null
     }
 
-    private fun finishSignUp(){
+    private fun clickSignUp(){
         binding.btnSignUp.setOnClickListener {
-            if(parentActivity != null) parentActivity?.finish() }
+            if(viewModel.checkNickName()){
+                Log.i("duhui", "성공")
+                viewModel.signUp()
+            }else{
+                Toast.makeText(context, "중복된 닉네임 입니다.", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun initViewModelCallback() {
+        with(viewModel) {
+            signup.observe(viewLifecycleOwner) {
+                Log.i("duhui2", "성공")
+                if(parentActivity != null) parentActivity?.finish()
+            }
+        }
     }
 }

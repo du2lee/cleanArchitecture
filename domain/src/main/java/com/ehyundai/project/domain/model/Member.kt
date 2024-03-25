@@ -9,3 +9,9 @@ data class Member (
     val profileImg : String,
     val introduction : String,
 )
+
+data class AuthCode (
+    val status : String,
+    val code : String,
+    val authCode : String,
+)

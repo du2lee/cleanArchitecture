@@ -47,7 +47,10 @@ class MailFragment : Fragment() {
 
     private fun goAuthMail() {
         binding.btnSignUp.setOnClickListener {
-            if (signUpActivity != null) signUpActivity?.setFragment(2)
+            if (signUpActivity != null) {
+                viewModel.getAuth()
+                signUpActivity?.setFragment(2)
+            }
             else if (findAccountActivity != null) findAccountActivity?.setFragment(2)
         }
     }

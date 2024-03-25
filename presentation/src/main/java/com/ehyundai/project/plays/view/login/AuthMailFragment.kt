@@ -2,6 +2,7 @@ package com.ehyundai.project.plays.view.login
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +51,7 @@ class AuthMailFragment : Fragment() {
 
     private fun goSignUp() {
         binding.btnSignUp.setOnClickListener {
-            if (signUpActivity != null) {
+            if (signUpActivity != null && viewModel.checkAuthCode()) {
                 signUpActivity?.setFragment(1)
                 viewModel.setTitle(3)
             } else if (findAccountActivity != null) {
@@ -62,7 +63,12 @@ class AuthMailFragment : Fragment() {
 
     private fun completeCode() {
         binding.etCode.setOnCompleteListener(OnCompleteListener { value ->
-            if (signUpActivity != null) Toast.makeText(signUpActivity, "Completed $value", Toast.LENGTH_LONG).show()
+            if (signUpActivity != null) {
+                if(viewModel.checkAuthCode(value)) {
+                    signUpActivity?.setFragment(1)
+                    viewModel.setTitle(3)
+                }
+            }
             else if (findAccountActivity != null) Toast.makeText(findAccountActivity, "Completed $value", Toast.LENGTH_LONG).show() }
         )
     }

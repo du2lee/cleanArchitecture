@@ -4,11 +4,13 @@ import com.ehyundai.project.data.model.club.ClubEntity
 import com.ehyundai.project.data.model.club.ClubInfoEntity
 import com.ehyundai.project.data.model.club.MemberEntity
 import com.ehyundai.project.data.model.company.CompanyEntity
+import com.ehyundai.project.data.model.members.AuthResponse
+import com.ehyundai.project.data.model.members.BaseResponse
+import com.ehyundai.project.domain.model.AuthCode
 import com.ehyundai.project.domain.model.Club
 import com.ehyundai.project.domain.model.ClubInfo
 import com.ehyundai.project.domain.model.Company
 import com.ehyundai.project.domain.model.Member
-import io.reactivex.Single
 
 /**
  * Data Entity to Data Model
@@ -63,4 +65,20 @@ fun mapperToCompany(companys: List<CompanyEntity>): List<Company> {
             it.imgPath
         )
     }
+}
+
+fun mapperToAuthCode(response: AuthResponse): AuthCode {
+    return AuthCode(
+        response.status?: "실패",
+        response.code?: "실패",
+        response.data?: "-1"
+    )
+}
+
+fun mapperToReponse(response: BaseResponse): AuthCode {
+    return AuthCode(
+        response.status?: "실패",
+        response.code?: "실패",
+        response.data?: "-1"
+    )
 }
