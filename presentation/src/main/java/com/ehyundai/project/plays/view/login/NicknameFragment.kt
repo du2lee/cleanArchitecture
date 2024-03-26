@@ -51,21 +51,29 @@ class NicknameFragment : Fragment() {
     }
 
     private fun clickSignUp(){
-        binding.btnSignUp.setOnClickListener {
-            if(viewModel.checkNickName()){
-                Log.i("duhui", "성공")
-                viewModel.signUp()
-            }else{
-                Toast.makeText(context, "중복된 닉네임 입니다.", Toast.LENGTH_LONG).show()
-            }
-        }
+        binding.btnSignUp.setOnClickListener { viewModel.checkNickName() }
     }
 
     private fun initViewModelCallback() {
         with(viewModel) {
+            checkNickname.observe(viewLifecycleOwner) {
+                viewModel.signUp()
+            }
+
+            failNickname.observe(viewLifecycleOwner) {
+                Log.i("duhui1", "실패")
+                Toast.makeText(context, "중복된 닉네임 입니다.", Toast.LENGTH_LONG).show()
+            }
+
             signup.observe(viewLifecycleOwner) {
                 Log.i("duhui2", "성공")
+                Toast.makeText(context, "회원가입 되었습니다.", Toast.LENGTH_LONG).show()
                 if(parentActivity != null) parentActivity?.finish()
+            }
+
+            failSignup.observe(viewLifecycleOwner) {
+                Log.i("duhui3", "실패")
+                Toast.makeText(context, "에러가 발생했습니다..", Toast.LENGTH_LONG).show()
             }
         }
     }

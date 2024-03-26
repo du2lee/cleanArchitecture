@@ -20,6 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Plays"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".view.login.SignUpActivity"
@@ -44,7 +45,7 @@
             android:exported="false" />
         <activity
             android:name=".view.main.MainActivity"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>

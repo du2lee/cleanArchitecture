@@ -37,6 +37,7 @@ class AuthMailFragment : Fragment() {
     ): View?{
         binding = FragmentAuthMailBinding.inflate(layoutInflater)
         binding.vm = viewModel
+        initViewModelCallback()
         goSignUp()
         completeCode()
 
@@ -62,14 +63,19 @@ class AuthMailFragment : Fragment() {
     }
 
     private fun completeCode() {
-        binding.etCode.setOnCompleteListener(OnCompleteListener { value ->
-            if (signUpActivity != null) {
-                if(viewModel.checkAuthCode(value)) {
+        binding.etCode.setOnCompleteListener(OnCompleteListener { value ->  if(signUpActivity != null) viewModel.checkAuthCode(value)
+            else if (findAccountActivity != null) Toast.makeText(findAccountActivity, "Completed $value", Toast.LENGTH_LONG).show() }
+        )
+    }
+
+    private fun initViewModelCallback() {
+        with(viewModel) {
+            goPassword.observe(viewLifecycleOwner) {
+                if(signUpActivity != null) {
                     signUpActivity?.setFragment(1)
                     viewModel.setTitle(3)
                 }
             }
-            else if (findAccountActivity != null) Toast.makeText(findAccountActivity, "Completed $value", Toast.LENGTH_LONG).show() }
-        )
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.ehyundai.project.plays.view.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,8 +29,20 @@ class SignUpViewModel @Inject constructor(
     private val _authCode = MutableLiveData<AuthCode>()
     val authCode: LiveData<AuthCode> get() = _authCode
 
+    private val _goPassword = MutableLiveData<Unit>()
+    val goPassword: LiveData<Unit> = _goPassword
+
+    private val _checkNickname = MutableLiveData<Unit>()
+    val checkNickname: LiveData<Unit> = _checkNickname
+
+    private val _failNickname = MutableLiveData<Unit>()
+    val failNickname: LiveData<Unit> = _failNickname
+
     private val _signup = MutableLiveData<Unit>()
     val signup: LiveData<Unit> = _signup
+
+    private val _failSignup = MutableLiveData<Unit>()
+    val failSignup: LiveData<Unit> = _failSignup
 
     fun setTitle(flag : Int){
         when (flag){
@@ -54,31 +67,28 @@ class SignUpViewModel @Inject constructor(
         return authNum.value == authCode.value!!.authCode
     }
 
-    fun checkAuthCode(num: String): Boolean{
-        var flag = false
+    fun checkAuthCode(num: String){
         compositeDisposable.add(
             getMemberUseCase.verifyAuthCode(mail.value.toString(), num)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { response ->
-                    if (response.authCode == "success") { flag = true } })
+                    if (response.authCode == "success") { _goPassword.value = Unit } })
         authNum.value = num
-        return flag
     }
 
     fun verifyPwd(): Boolean {
         return verifyPw.value == pw.value
     }
 
-    fun checkNickName(): Boolean{
-        var flag = false
+    fun checkNickName(){
         compositeDisposable.add(
             getMemberUseCase.checkDuplicatedNickname(nickname.value.toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { response ->
-                    if (response.authCode == "success") { flag = true } })
-        return flag
+                    if (response.authCode == "success") { _checkNickname.value = Unit }
+                    else{ _failNickname.value = Unit } })
     }
 
     fun signUp(){
@@ -86,8 +96,14 @@ class SignUpViewModel @Inject constructor(
             getMemberUseCase.signUp(mail.value.toString(), pw.value.toString(), nickname.value.toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnError{
+                    e -> Log.e("onError()", e.message.toString())
+                    Log.e("onError()", e.cause.toString())
+                    _failSignup.value = Unit
+                }
                 .subscribe { response ->
-                    if (response.authCode == "success") { _signup.value = Unit } })
+                    if (response.authCode == "success") { _signup.value = Unit }
+                    else { _failSignup.value = Unit } })
     }
 
 }
