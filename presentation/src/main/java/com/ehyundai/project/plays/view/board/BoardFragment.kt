@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.ehyundai.project.plays.databinding.FragmentBoardBinding
+import com.ehyundai.project.plays.view.BoardAdapter
+import com.ehyundai.project.plays.view.main.MainActivity
 import com.ehyundai.project.plays.view.main.MainViewModel
 
 class BoardFragment : Fragment() {
@@ -16,6 +18,13 @@ class BoardFragment : Fragment() {
     private lateinit var context: Context
     private val viewModel by activityViewModels<MainViewModel>()
 
+    private var boardList = arrayListOf<String>("안녕하세요", "24.11.23 모임", "해피해피해피")
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        this.context = context as MainActivity
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,7 +32,22 @@ class BoardFragment : Fragment() {
         binding = FragmentBoardBinding.inflate(layoutInflater)
         binding.vm = viewModel
 
+        setBoardList()
+
         return binding.root
     }
 
+    private fun setBoardList(){
+//        val boardList = viewModel.getBoardList()
+
+        binding.lvBoard.adapter = BoardAdapter(context, boardList)
+
+        // 클릭 이벤트
+//        binding.lvBoard.setOnItemClickListener { parent: AdapterView<*>, view: View, position: Int, id: Long ->
+//            val intent = Intent(context, ClubActivity::class.java)
+//
+//            intent.putExtra("clubNo", view.tag.toString().toInt())
+//            startActivity(intent)
+//        }
+    }
 }
