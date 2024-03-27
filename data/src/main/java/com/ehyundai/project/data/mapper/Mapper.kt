@@ -79,6 +79,6 @@ fun mapperToReponse(response: BaseResponse): AuthCode {
     return AuthCode(
         response.status?: "실패",
         response.code?: "실패",
-        response.data?: "-1"
+        response.message?: "-1"
     )
 }

@@ -38,5 +38,5 @@ data class BaseResponse (
     @SerializedName("code")
     val code: String,
     @SerializedName("message")
-    val data: String,
+    val message: String,
 )

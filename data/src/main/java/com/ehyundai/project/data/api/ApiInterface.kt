@@ -6,6 +6,9 @@ import com.ehyundai.project.data.model.company.CompanyResponse
 import com.ehyundai.project.data.model.members.AuthResponse
 import com.ehyundai.project.data.model.members.BaseResponse
 import io.reactivex.Single
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -41,16 +44,11 @@ interface ApiInterface {
         @Query("authCode") authCode: String
     ): Single<BaseResponse>
 
-    @POST("members/check-duplicated-nickname")
+    @GET("members/check-duplicated-nickname")
     fun checkDuplicatedNickname(
         @Query("nickname") nickname: String,
     ): Single<BaseResponse>
 
     @POST("members/signup")
-    fun signUp(
-        @Query("email") email: String,
-        @Query("pwd") pwd: String,
-        @Query("nickname") nickname: String,
-//        @Query("company") company: String
-    ): Single<BaseResponse>
+    fun signUp(@Body requestBody: RequestBody): Single<BaseResponse>
 }
