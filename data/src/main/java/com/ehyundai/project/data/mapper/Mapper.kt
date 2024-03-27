@@ -1,5 +1,6 @@
 package com.ehyundai.project.data.mapper
 
+import com.ehyundai.project.data.model.auth.LoginEntity
 import com.ehyundai.project.data.model.club.ClubEntity
 import com.ehyundai.project.data.model.club.ClubInfoEntity
 import com.ehyundai.project.data.model.club.MemberEntity
@@ -10,6 +11,7 @@ import com.ehyundai.project.domain.model.AuthCode
 import com.ehyundai.project.domain.model.Club
 import com.ehyundai.project.domain.model.ClubInfo
 import com.ehyundai.project.domain.model.Company
+import com.ehyundai.project.domain.model.Login
 import com.ehyundai.project.domain.model.Member
 
 /**
@@ -80,5 +82,14 @@ fun mapperToReponse(response: BaseResponse): AuthCode {
         response.status?: "실패",
         response.code?: "실패",
         response.message?: "-1"
+    )
+}
+
+fun mapperToLogin(response: LoginEntity): Login {
+    return Login(
+        response.email?: "",
+        response.auth?: "",
+        response.accessToken?: "",
+        response.refreshToken?: ""
     )
 }

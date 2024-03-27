@@ -3,6 +3,7 @@ package com.ehyundai.project.data.repository.member.remote
 import android.util.Log
 import com.ehyundai.project.data.api.ApiInterface
 import com.ehyundai.project.data.api.RetrofitClient
+import com.ehyundai.project.data.model.auth.LoginResponse
 import com.ehyundai.project.data.model.members.AuthResponse
 import com.ehyundai.project.data.model.members.BaseResponse
 import io.reactivex.Single
@@ -34,6 +35,14 @@ class MemberRemoteDataSourceImpl @Inject constructor(private val apiInterface: A
         jsonObject.put("nickname", nickname)
         val requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString())
         return apiInterface.signUp(requestBody)
+    }
+
+    override fun login(email: String, pwd: String): Single<LoginResponse> {
+        val jsonObject = JSONObject()
+        jsonObject.put("email", email)
+        jsonObject.put("pwd", pwd)
+        val requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString())
+        return apiInterface.login(requestBody)
     }
 
 }

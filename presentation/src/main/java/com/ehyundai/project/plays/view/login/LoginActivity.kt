@@ -81,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login() {
-        binding.btnSignIn.setOnClickListener { viewModel.onLoginClick() }
+        binding.btnSignIn.setOnClickListener { viewModel.onLoginClick(context) }
     }
 
     private fun signUp() {

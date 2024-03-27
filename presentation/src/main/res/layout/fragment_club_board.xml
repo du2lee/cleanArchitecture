@@ -3,10 +3,9 @@
 <layout>
 
 <data>
-
-    <!--        <variable-->
-    <!--            name="viewModel"-->
-    <!--            type="com.ehyundai.project.club.view.profile.ProfileViewModel" />-->
+            <variable
+                name="vm"
+                type="com.ehyundai.project.plays.view.club.ClubViewModel" />
 </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

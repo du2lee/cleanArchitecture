@@ -1,9 +1,11 @@
 package com.ehyundai.project.data.repository.member
 
 import com.ehyundai.project.data.mapper.mapperToAuthCode
+import com.ehyundai.project.data.mapper.mapperToLogin
 import com.ehyundai.project.data.mapper.mapperToReponse
 import com.ehyundai.project.data.repository.member.remote.MemberRemoteDataSource
 import com.ehyundai.project.domain.model.AuthCode
+import com.ehyundai.project.domain.model.Login
 import com.ehyundai.project.domain.repository.MemberRepository
 import io.reactivex.Single
 import javax.inject.Inject
@@ -32,6 +34,12 @@ class MemberRepositoryImpl @Inject constructor(
     override fun signUp(email: String, pwd: String, nickname: String): Single<AuthCode> {
         return memberRemoteDataSource.signUp(email, pwd, nickname).flatMap {
             Single.just(mapperToReponse((it)))
+        }
+    }
+
+    override fun login(email: String, pwd: String): Single<Login> {
+        return memberRemoteDataSource.login(email, pwd).flatMap {
+            Single.just(mapperToLogin(it.data))
         }
     }
 }

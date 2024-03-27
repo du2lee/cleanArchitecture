@@ -1,16 +1,20 @@
 package com.ehyundai.project.data.api
 
+import com.ehyundai.project.data.model.auth.LoginResponse
 import com.ehyundai.project.data.model.club.ClubInfoResponse
 import com.ehyundai.project.data.model.club.ClubResponse
 import com.ehyundai.project.data.model.company.CompanyResponse
 import com.ehyundai.project.data.model.members.AuthResponse
 import com.ehyundai.project.data.model.members.BaseResponse
 import io.reactivex.Single
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiInterface {
@@ -26,6 +30,21 @@ interface ApiInterface {
     fun getSearchClubInfo(
         @Query("clubNo") clubNo: Int
     ): Single<ClubInfoResponse>
+
+//    /**
+//     * 모바일 여권 정보 저장 함수
+//     */
+//    @Multipart
+//    @POST("club")
+//    fun saveEPassportInfo(
+//        @Part("Authorization") mbshNo: RequestBody,
+//        @Part("companyNo") piKey: RequestBody,
+//        @Part("clubNm") givenName: RequestBody,
+//        @Part("clubDesc") surName: RequestBody,
+//        @Part clubImg : MultipartBody.Part,
+//    ): Call<EPassportRequest>
+
+
 
     // company
     @GET("company/list")
@@ -51,4 +70,8 @@ interface ApiInterface {
 
     @POST("members/signup")
     fun signUp(@Body requestBody: RequestBody): Single<BaseResponse>
+
+    // auth
+    @POST("auth/login")
+    fun login(@Body requestBody: RequestBody): Single<LoginResponse>
 }

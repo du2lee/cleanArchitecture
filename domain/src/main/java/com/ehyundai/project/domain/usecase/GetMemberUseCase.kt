@@ -10,4 +10,6 @@ class GetMemberUseCase @Inject constructor(private val repository: MemberReposit
     fun verifyAuthCode(email: String, authCode: String) = repository.verifyAuthCode(email, authCode)
     fun checkDuplicatedNickname(nickname: String) = repository.checkDuplicatedNickname(nickname)
     fun signUp(email: String, pwd: String, nickname: String) = repository.signUp(email, pwd, nickname)
+
+    fun login(email: String, pwd: String) = repository.login(email, pwd)
 }
