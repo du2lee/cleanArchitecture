@@ -1,6 +1,7 @@
 package com.ehyundai.project.data.api
 
 import com.ehyundai.project.data.model.auth.LoginResponse
+import com.ehyundai.project.data.model.board.BoardResponse
 import com.ehyundai.project.data.model.club.ClubInfoResponse
 import com.ehyundai.project.data.model.club.ClubResponse
 import com.ehyundai.project.data.model.company.CompanyResponse
@@ -74,4 +75,11 @@ interface ApiInterface {
     // auth
     @POST("auth/login")
     fun login(@Body requestBody: RequestBody): Single<LoginResponse>
+
+    // board
+    @GET("clubPost/list")
+    fun getPost(
+        @Query("clubNo") clubNo: String
+    ): Call<BoardResponse>
+
 }

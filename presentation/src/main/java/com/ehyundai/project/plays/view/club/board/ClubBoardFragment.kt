@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.activityViewModels
+import com.ehyundai.project.plays.Board2Adapter
 import com.ehyundai.project.plays.databinding.FragmentClubBoardBinding
 import com.ehyundai.project.plays.view.BoardAdapter
 import com.ehyundai.project.plays.view.club.ClubActivity
@@ -44,7 +45,7 @@ class ClubBoardFragment : Fragment() {
     private fun setBoardList(){
 //        val boardList = viewModel.getBoardList()
 
-        binding.lvBoard.adapter = BoardAdapter(context, boardList)
+        binding.lvBoard.adapter = Board2Adapter(context, boardList)
 
         // 클릭 이벤트
 //        binding.lvBoard.setOnItemClickListener { parent: AdapterView<*>, view: View, position: Int, id: Long ->

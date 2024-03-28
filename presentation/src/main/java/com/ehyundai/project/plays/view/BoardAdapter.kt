@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.bumptech.glide.Glide
 import com.ehyundai.project.domain.model.Club
+import com.ehyundai.project.domain.model.PostEntity
 import com.ehyundai.project.plays.databinding.ItemBoardListViewBinding
 import com.ehyundai.project.plays.databinding.ItemListViewBinding
 
-class BoardAdapter(val context: Context, private val boardList: ArrayList<String>) : BaseAdapter() {
+class BoardAdapter(val context: Context, private val boardList: ArrayList<PostEntity>) : BaseAdapter() {
 
     private var mBinding: ItemBoardListViewBinding? = null
     private val binding get() = mBinding!!
@@ -31,7 +32,9 @@ class BoardAdapter(val context: Context, private val boardList: ArrayList<String
         val board = boardList[position]
 
         // Todo 값 설정 필요
-        title.text = board
+        title.text = board.postTitle
+        text.text = board.postContent
+        Glide.with(context).load(board.postImg[0].url).into(img)
 
         return mBinding!!.root
     }

@@ -61,9 +61,4 @@ class LoginViewModel @Inject constructor(
                     _successLogin.value = Unit
                 })
     }
-
-    companion object { //이 아이디와 비번으로만 로그인이 가능 (서버X)
-        private const val USER_ID = "id"
-        private const val USER_PW = "pass"
-    }
 }

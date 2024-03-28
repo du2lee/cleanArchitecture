@@ -1,6 +1,10 @@
 package com.ehyundai.project.data.mapper
 
 import com.ehyundai.project.data.model.auth.LoginEntity
+import com.ehyundai.project.data.model.board.BoardEntity
+import com.ehyundai.project.data.model.board.BoardImg
+import com.ehyundai.project.data.model.board.BoardResponse
+import com.ehyundai.project.data.model.board.CommentEntity
 import com.ehyundai.project.data.model.club.ClubEntity
 import com.ehyundai.project.data.model.club.ClubInfoEntity
 import com.ehyundai.project.data.model.club.MemberEntity
@@ -10,9 +14,13 @@ import com.ehyundai.project.data.model.members.BaseResponse
 import com.ehyundai.project.domain.model.AuthCode
 import com.ehyundai.project.domain.model.Club
 import com.ehyundai.project.domain.model.ClubInfo
+import com.ehyundai.project.domain.model.CommentEntityForDomain
 import com.ehyundai.project.domain.model.Company
 import com.ehyundai.project.domain.model.Login
 import com.ehyundai.project.domain.model.Member
+import com.ehyundai.project.domain.model.Post
+import com.ehyundai.project.domain.model.PostEntity
+import com.ehyundai.project.domain.model.PostImg
 
 /**
  * Data Entity to Data Model
@@ -93,3 +101,48 @@ fun mapperToLogin(response: LoginEntity): Login {
         response.refreshToken?: ""
     )
 }
+
+fun mapperToPost(response: BoardResponse): Post {
+    return Post(
+        response.status?: "",
+        response.code?: "",
+        mapperToPostEntity(response.data)
+    )
+}
+
+fun mapperToPostEntity(response: List<BoardEntity>): List<PostEntity>{
+    return response.toList().map {
+        PostEntity(
+            it.postNo?: "",
+            it.nickname?: "",
+            it.companyNm?: "",
+            it.postTitle?: "",
+            it.postContent?: "",
+            it.likeCnt?: "",
+            listOf(),
+            it.createdDate?: "",
+            mapperToPostImg(it.postImg)?: listOf(),
+            it.commentCount?: "",
+        )
+    }
+}
+
+fun mapperToCommentEntity(response: List<CommentEntity>): List<CommentEntityForDomain>{
+    return response.toList().map {
+        CommentEntityForDomain(
+            it.postNo?: "",
+        )
+    }
+}
+
+fun mapperToPostImg(response: List<BoardImg>): List<PostImg>{
+
+    return response.toList().map{
+        PostImg(
+        it.postImgNo?: "",
+        it.postNo?: "",
+        it.url?: "")
+    }
+
+}
+

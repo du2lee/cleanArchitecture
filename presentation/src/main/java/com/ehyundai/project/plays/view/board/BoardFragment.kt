@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.ehyundai.project.plays.databinding.FragmentBoardBinding
 import com.ehyundai.project.plays.view.BoardAdapter
+import com.ehyundai.project.plays.view.ClubAdapter
 import com.ehyundai.project.plays.view.main.MainActivity
-import com.ehyundai.project.plays.view.main.MainViewModel
 
 class BoardFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBinding
     private lateinit var context: Context
-    private val viewModel by activityViewModels<MainViewModel>()
+    private val viewModel by activityViewModels<BoardViewModel>()
 
     private var boardList = arrayListOf<String>("안녕하세요", "24.11.23 모임", "해피해피해피")
 
@@ -32,15 +32,16 @@ class BoardFragment : Fragment() {
         binding = FragmentBoardBinding.inflate(layoutInflater)
         binding.vm = viewModel
 
-        setBoardList()
+        viewModel.getBoard(context, "1")
+        initViewModelCallback()
 
         return binding.root
     }
 
     private fun setBoardList(){
-//        val boardList = viewModel.getBoardList()
+        val boardList = viewModel.getBoardList()
 
-        binding.lvBoard.adapter = BoardAdapter(context, boardList)
+        binding.lvBoard.adapter = boardList?.let { BoardAdapter(context, it) }
 
         // 클릭 이벤트
 //        binding.lvBoard.setOnItemClickListener { parent: AdapterView<*>, view: View, position: Int, id: Long ->
@@ -49,5 +50,11 @@ class BoardFragment : Fragment() {
 //            intent.putExtra("clubNo", view.tag.toString().toInt())
 //            startActivity(intent)
 //        }
+    }
+
+    private fun initViewModelCallback() {
+        with(viewModel){
+            boardList.observe(viewLifecycleOwner) { setBoardList() }
+        }
     }
 }
