@@ -17,14 +17,14 @@ import javax.inject.Inject
 class ClubRemoteDataSourceImpl @Inject constructor(private val apiInterface: ApiInterface) :
     ClubRemoteDataSource {
     override fun getSearchClubs(companyNo : Int): Single<ClubResponse> {
-        return apiInterface.getSearchClubs(companyNo)
+        return apiInterface.getClubs(companyNo)
     }
 
     override fun getSearchAll(): Single<ClubResponse> {
-        return apiInterface.getSearchClubAll()
+        return apiInterface.getClubAll()
     }
 
     override fun getSearchClubInfo(clubNo: Int): Single<ClubInfoResponse> {
-        return apiInterface.getSearchClubInfo(clubNo)
+        return apiInterface.getClubInfo(clubNo)
     }
 }

@@ -8,7 +8,6 @@ import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.concurrent.CountDownLatch
 import javax.inject.Inject
 
 class PostRemoteDataSourceImpl @Inject constructor(private val apiInterface: ApiInterface): PostRemoteDataSource {
@@ -38,7 +37,7 @@ class PostRemoteDataSourceImpl @Inject constructor(private val apiInterface: Api
 
     override fun getPost(token: String, clubNo: String): Single<BoardResponse> {
         return Single.create { emitter ->
-            val call = RetrofitClient.getApiService(token).getPost(clubNo)
+            val call = RetrofitClient.getApiService(token).getPostList(clubNo)
             call.enqueue(object : Callback<BoardResponse> {
                 override fun onResponse(call: Call<BoardResponse>, response: Response<BoardResponse>) {
                     if (response.isSuccessful) {
