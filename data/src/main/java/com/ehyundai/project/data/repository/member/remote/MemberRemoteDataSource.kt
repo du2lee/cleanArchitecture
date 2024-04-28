@@ -9,7 +9,6 @@ interface MemberRemoteDataSource {
     fun getAuthCode(email: String): Single<AuthResponse>
     fun verifyAuthCode(email: String, authCode: String): Single<BaseResponse>
     fun checkDuplicatedNickname(nickname: String): Single<BaseResponse>
-    fun signUp(email: String, pwd: String, nickname: String): Single<BaseResponse>
-
+    fun signUp(email: String, pwd: String, nickname: String, companyNo: String): Single<BaseResponse>
     fun login(email: String, pwd: String): Single<LoginResponse>
 }

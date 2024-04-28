@@ -31,8 +31,8 @@ class MemberRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun signUp(email: String, pwd: String, nickname: String): Single<AuthCode> {
-        return memberRemoteDataSource.signUp(email, pwd, nickname).flatMap {
+    override fun signUp(email: String, pwd: String, nickname: String, companyNo: String): Single<AuthCode> {
+        return memberRemoteDataSource.signUp(email, pwd, nickname, companyNo).flatMap {
             Single.just(mapperToReponse((it)))
         }
     }

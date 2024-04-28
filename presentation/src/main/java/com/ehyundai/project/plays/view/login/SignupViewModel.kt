@@ -21,6 +21,7 @@ class SignUpViewModel @Inject constructor(
     val pw: MutableLiveData<String> = MutableLiveData("")
     val verifyPw: MutableLiveData<String> = MutableLiveData("")
     val nickname: MutableLiveData<String> = MutableLiveData("")
+    val companyNo: MutableLiveData<String> = MutableLiveData("")
 
     var mail = MutableLiveData<String>()
     var authNum = MutableLiveData<String>()
@@ -93,7 +94,7 @@ class SignUpViewModel @Inject constructor(
 
     fun signUp(){
         compositeDisposable.add(
-            getMemberUseCase.signUp(mail.value.toString(), pw.value.toString(), nickname.value.toString())
+            getMemberUseCase.signUp(mail.value.toString(), pw.value.toString(), nickname.value.toString(), companyNo.value.toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError{

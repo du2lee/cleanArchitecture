@@ -8,7 +8,7 @@ interface MemberRepository {
     fun getAuthCode(email: String): Single<AuthCode>
     fun verifyAuthCode(email: String, authCode: String): Single<AuthCode>
     fun checkDuplicatedNickname(nickname: String): Single<AuthCode>
-    fun signUp(email: String, pwd: String, nickname: String): Single<AuthCode>
+    fun signUp(email: String, pwd: String, nickname: String, companyNo: String): Single<AuthCode>
 
     fun login(email: String, pwd: String): Single<Login>
 }
