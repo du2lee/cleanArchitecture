@@ -23,6 +23,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.date.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.date.ChangeNicknameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.date.ChangeCompanyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.date.ChangePartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.date.ChangeLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.date.ChangeIntroductionActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.login.SignUpActivity"
             android:exported="false" />
         <activity

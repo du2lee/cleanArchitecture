@@ -45,6 +45,10 @@ class SignUpViewModel @Inject constructor(
     private val _failSignup = MutableLiveData<Unit>()
     val failSignup: LiveData<Unit> = _failSignup
 
+    init {
+        companyNo.postValue("0")
+    }
+
     fun setTitle(flag : Int){
         when (flag){
             1 -> title.value = "메일인증"
