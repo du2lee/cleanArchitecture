@@ -113,7 +113,7 @@ interface ApiInterface {
      * Auth
      */
     @POST("auth/login")
-    fun login(@Body requestBody: RequestBody): Single<LoginResponse>
+    fun login(@Body requestBody: RequestBody): Call<LoginResponse>
 
     // TODO input, output 수정
     @POST("auth/refresh")

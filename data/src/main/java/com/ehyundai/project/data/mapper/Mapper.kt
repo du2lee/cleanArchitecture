@@ -93,12 +93,12 @@ fun mapperToReponse(response: BaseResponse): AuthCode {
     )
 }
 
-fun mapperToLogin(response: LoginEntity): Login {
+fun mapperToLogin(response: LoginEntity?): Login {
     return Login(
-        response.email?: "",
-        response.auth?: "",
-        response.accessToken?: "",
-        response.refreshToken?: ""
+        response?.email?: "",
+        response?.auth?: "",
+        response?.accessToken?: "",
+        response?.refreshToken?: ""
     )
 }
 

@@ -6,11 +6,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class LoginResponse (
     @SerializedName("status")
-    val status: String,
+    val status: String?,
     @SerializedName("code")
-    val code: String,
+    val code: String?,
     @SerializedName("data")
-    val data: LoginEntity,
+    val data: LoginEntity?,
 )
 
 @Serializable

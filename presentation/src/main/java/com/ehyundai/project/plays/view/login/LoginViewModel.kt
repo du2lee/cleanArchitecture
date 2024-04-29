@@ -56,9 +56,13 @@ class LoginViewModel @Inject constructor(
                     _loginErrorMsg.value = Unit
                 }
                 .subscribe { response ->
-                    Util.setPreference(context, "accessToken", response.accessToken)
-                    Util.setPreference(context, "refreshToken", response.refreshToken)
-                    _successLogin.value = Unit
+                    if(response.accessToken.isNullOrBlank())
+                        _loginErrorMsg.value = Unit
+                    else {
+                        Util.setPreference(context, "accessToken", response.accessToken)
+                        Util.setPreference(context, "refreshToken", response.refreshToken)
+                        _successLogin.value = Unit
+                    }
                 })
     }
 }
