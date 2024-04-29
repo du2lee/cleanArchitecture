@@ -16,8 +16,13 @@ import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.ehyundai.project.plays.databinding.ActivityCreateClubBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
 
 @AndroidEntryPoint
 class CreateClubActivity : AppCompatActivity() {
@@ -42,6 +47,11 @@ class CreateClubActivity : AppCompatActivity() {
 
         binding.ivRegisterLogo.setOnClickListener {    // 이미지뷰를 클릭했을 때 갤러리 또는 카메라를 열기 위한 메소드 호출
             showCameraOrGalleryDialog()
+        }
+
+        binding.btnRegisterClub.setOnClickListener {
+            viewModel.creatClub(context)
+            finish()
         }
 
         initViewModelCallback()
@@ -105,12 +115,10 @@ class CreateClubActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 REQUEST_IMAGE_CAPTURE -> {
-                    val imageBitmap = data?.extras?.get("data") as Bitmap
-                    binding.ivRegisterLogo.setImageBitmap(imageBitmap)
+                    viewModel.setCamera(context, data?.extras?.get("data") as Bitmap)
                 }
                 REQUEST_IMAGE_PICK -> {
-                    val imageUri: Uri? = data?.data
-                    binding.ivRegisterLogo.setImageURI(imageUri)
+                    viewModel.setGallery(data?.data)
                 }
             }
         }
@@ -118,19 +126,8 @@ class CreateClubActivity : AppCompatActivity() {
 
     private fun initViewModelCallback() {
         with(viewModel){
-            companyList.observe(this@CreateClubActivity) { setupSpinner()  }
+            clubImg.observe(this@CreateClubActivity, Observer{binding.ivRegisterLogo.setImageURI(it)})
         }
     }
 
-    private fun setupSpinner() {
-        val companys = viewModel.getCompanyList()
-        val adapter = ArrayAdapter(this, R.layout.simple_spinner_item, companys!!.toArray())
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spClubCompany.adapter = adapter
-    }
-
-    private fun showSelectedItem() {
-        val selectedItem = binding.spClubCompany.selectedItem as? String
-//        Toast.makeText(this, "선택된 항목: $selectedItem", Toast.LENGTH_SHORT).show()
-    }
 }

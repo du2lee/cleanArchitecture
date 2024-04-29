@@ -27,35 +27,37 @@ data class ClubEntity (
 @Serializable
 data class ClubInfoEntity (
     @SerializedName("clubNo")
-    val clubNo : Int,
+    val clubNo : Int?,
     @SerializedName("companyNm")
-    val company : String,
+    val company : String?,
     @SerializedName("clubNm")
-    val name : String,
+    val name : String?,
     @SerializedName("clubDesc")
-    val clubDesc : String,
+    val clubDesc : String?,
     @SerializedName("clubImg")
-    val logo : String,
+    val logo : String?,
     @SerializedName("createdDate")
-    val date : String,
-    @SerializedName("memberList")
-    val members : List<MemberEntity>,
+    val date : String?,
+    @SerializedName("adminList")
+    val members : List<MemberEntity>?,
 )
 
 @Serializable
 data class MemberEntity (
     @SerializedName("memberNo")
-    val memberNo : Int,
+    val memberNo : Int?,
     @SerializedName("memberNm")
-    val memberNm : String,
+    val memberNm : String?,
     @SerializedName("nickname")
-    val nickname : String,
+    val nickname : String?,
     @SerializedName("companyNm")
-    val companyNm : String,
+    val companyNm : String?,
     @SerializedName("role")
-    val role : String,
+    val role : String?,
     @SerializedName("profileImg")
-    val profileImg : String,
+    val profileImg : String?,
     @SerializedName("introduction")
-    val introduction : String,
+    val introduction : String?,
+    @SerializedName("roleNo")
+    val roleNo : String?,
 )

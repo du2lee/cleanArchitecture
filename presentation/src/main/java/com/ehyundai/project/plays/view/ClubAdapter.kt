@@ -28,7 +28,7 @@ class ClubAdapter(val context: Context, private val groupList: ArrayList<Club>) 
         view.tag = group.clubNo
         Glide.with(context).load(group.logo).into(logo)
         name.text = group.name
-        date.text = "Since " + group.date
+        date.text = "Since " + group.date.substring(0, 10)
         info.text = group.company + " | 멤버" + group.members
 
         return mBinding!!.root

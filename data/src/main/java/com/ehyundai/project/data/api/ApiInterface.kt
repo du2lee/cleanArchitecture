@@ -4,6 +4,7 @@ import com.ehyundai.project.data.model.auth.LoginResponse
 import com.ehyundai.project.data.model.board.BoardResponse
 import com.ehyundai.project.data.model.club.ClubInfoResponse
 import com.ehyundai.project.data.model.club.ClubResponse
+import com.ehyundai.project.data.model.club.ClubResponse2
 import com.ehyundai.project.data.model.company.CompanyResponse
 import com.ehyundai.project.data.model.members.AuthResponse
 import com.ehyundai.project.data.model.members.BaseResponse
@@ -130,11 +131,11 @@ interface ApiInterface {
     @Multipart
     @POST("club")
     fun postClub(
-        @Part("companyNo") companyNo: RequestBody,
+//        @Part("companyNo") companyNo: RequestBody,
         @Part("clubNm") clubNm: RequestBody,
         @Part("clubDesc") clubDesc: RequestBody,
         @Part clubImg: MultipartBody.Part,
-    ): Call<ClubResponse>
+    ): Call<ClubResponse2>
 
     // TODO output 수정
     @POST("club/signup")

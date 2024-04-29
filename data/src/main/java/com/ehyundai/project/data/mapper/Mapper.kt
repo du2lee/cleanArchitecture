@@ -7,6 +7,8 @@ import com.ehyundai.project.data.model.board.BoardResponse
 import com.ehyundai.project.data.model.board.CommentEntity
 import com.ehyundai.project.data.model.club.ClubEntity
 import com.ehyundai.project.data.model.club.ClubInfoEntity
+import com.ehyundai.project.data.model.club.ClubResponse
+import com.ehyundai.project.data.model.club.ClubResponse2
 import com.ehyundai.project.data.model.club.MemberEntity
 import com.ehyundai.project.data.model.company.CompanyEntity
 import com.ehyundai.project.data.model.members.AuthResponse
@@ -14,6 +16,7 @@ import com.ehyundai.project.data.model.members.BaseResponse
 import com.ehyundai.project.domain.model.AuthCode
 import com.ehyundai.project.domain.model.Club
 import com.ehyundai.project.domain.model.ClubInfo
+import com.ehyundai.project.domain.model.ClubResponseForDomain
 import com.ehyundai.project.domain.model.CommentEntityForDomain
 import com.ehyundai.project.domain.model.Company
 import com.ehyundai.project.domain.model.Login
@@ -41,18 +44,30 @@ fun mapperToClub(clubs: List<ClubEntity>): List<Club> {
     }
 }
 
-fun mapperToClubInfo(club: ClubInfoEntity): ClubInfo {
+fun mapperToClubInfo(club: ClubInfoEntity?): ClubInfo? {
     return ClubInfo(
-        club.clubNo,
-        club.company?: "미지정",
-        club.name,
-        club.clubDesc,
-        club.logo,
-        club.date,
-        mapperToMember(club.members))
+        club?.clubNo,
+        club?.company?: "미지정",
+        club?.name,
+        club?.clubDesc,
+        club?.logo,
+        club?.date,
+        mapperToMember(club?.members))
 }
 
-fun mapperToMember(members: List<MemberEntity>): List<Member>{
+fun mapperToClubResponse(response: ClubResponse2): ClubResponseForDomain {
+    return ClubResponseForDomain(
+        response.status?: "실패",
+        response.code?: "실패",
+        response.data?: null
+    )
+}
+
+fun mapperToMember(members: List<MemberEntity>?): List<Member>?{
+    if(members.isNullOrEmpty()){
+        return listOf()
+    }
+
     return members.toList().map {
         Member(
             it.memberNo,
@@ -62,6 +77,7 @@ fun mapperToMember(members: List<MemberEntity>): List<Member>{
             it.role?: "미지정",
             it.profileImg?: "미지정",
             it.introduction?: "미지정",
+            it.role?: "-1"
         )
     }
 
@@ -122,7 +138,7 @@ fun mapperToPostEntity(response: List<BoardEntity>?): List<PostEntity>{
             it.postTitle?: "",
             it.postContent?: "",
             it.likeCnt?: "",
-            listOf(),
+//            listOf(),
             it.createdDate?: "",
             mapperToPostImg(it.postImg)?: listOf(),
             it.commentCount?: "",

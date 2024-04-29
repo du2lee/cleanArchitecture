@@ -19,6 +19,10 @@ class ChangeNicknameActivity : AppCompatActivity() {
         viewModel.setTitle(1)
         binding.etInput.hint = "  닉네임"
         binding.vm = viewModel
+
+        binding.btnSignUp.setOnClickListener {
+            finish()
+        }
         context = this
     }
 }

@@ -26,36 +26,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="동아리 소개"
+            android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@id/tv_club_intro"
-            app:layout_constraintStart_toStartOf="@id/guide_left" />
-
-        <TextView
-            android:id="@+id/tv_club_intro"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:text="@{vm.clubInfo.clubDesc}"
+            app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintTop_toBottomOf="@id/iv_thumbnail" />
 
         <TextView
+            android:id="@+id/tv_club_intro"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/ic_edit_text"
+            android:gravity="center"
+            android:text="@{vm.clubInfo.clubDesc}"
+            app:layout_constraintBottom_toTopOf="@id/tv_title_2"
+            app:layout_constraintEnd_toEndOf="@id/guide_right"
+            app:layout_constraintStart_toStartOf="@id/guide_left"
+            app:layout_constraintTop_toBottomOf="@id/iv_thumbnail" />
+
+        <TextView
+            android:id="@+id/tv_title_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="운영진 소개"
+            android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@id/cl_club_masters"
-            app:layout_constraintStart_toStartOf="@id/guide_left" />
+            app:layout_constraintStart_toStartOf="@id/guide_left"
+            app:layout_constraintTop_toBottomOf="@id/tv_club_intro" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_club_masters"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toBottomOf="@id/guide_bottom"
             app:layout_constraintTop_toBottomOf="@id/tv_club_intro">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_master"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
+                android:background="@drawable/ic_edit_text"
+                android:elevation="10dp"
+                android:padding="5dp"
                 app:layout_constraintEnd_toStartOf="@id/cl_sub_master_one"
                 app:layout_constraintStart_toStartOf="parent">
 
@@ -63,6 +76,7 @@
                     android:id="@+id/iv_master"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:src="@drawable/ic_master"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -72,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="이두희"
+                    android:text="권준상"
                     app:layout_constraintBottom_toTopOf="@id/tv_master_company"
                     app:layout_constraintTop_toBottomOf="@id/iv_master" />
 
@@ -81,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="이두희"
+                    android:text="현대아이티앤이"
                     app:layout_constraintBottom_toTopOf="@id/tv_master_position"
                     app:layout_constraintTop_toBottomOf="@id/tv_master_name" />
 
@@ -99,8 +113,11 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_sub_master_one"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
+                android:background="@drawable/ic_edit_text"
+                android:elevation="10dp"
+                android:padding="5dp"
                 app:layout_constraintEnd_toStartOf="@id/cl_sub_master_two"
                 app:layout_constraintStart_toEndOf="@id/cl_master">
 
@@ -108,6 +125,7 @@
                     android:id="@+id/iv_sub_master_one"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:src="@drawable/ic_sub_master"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -117,7 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="이두희"
+                    android:text="김건영"
                     app:layout_constraintBottom_toTopOf="@id/tv_sub_master_one_company"
                     app:layout_constraintTop_toBottomOf="@id/iv_sub_master_one" />
 
@@ -126,7 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="이두희"
+                    android:text="현대아이티앤이"
                     app:layout_constraintBottom_toTopOf="@id/tv_sub_master_one_position"
                     app:layout_constraintTop_toBottomOf="@id/tv_sub_master_one_name" />
 
@@ -143,8 +161,11 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_sub_master_two"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
+                android:background="@drawable/ic_edit_text"
+                android:elevation="10dp"
+                android:padding="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cl_sub_master_one">
 
@@ -152,6 +173,7 @@
                     android:id="@+id/iv_sub_master_two"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:src="@drawable/ic_sub_master2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -170,7 +192,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="이두희"
+                    android:text="현대아이티앤이"
                     app:layout_constraintBottom_toTopOf="@id/tv_sub_master_two_position"
                     app:layout_constraintTop_toBottomOf="@id/tv_sub_master_two_name" />
 
@@ -195,6 +217,13 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_right"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_top"

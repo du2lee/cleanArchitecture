@@ -13,7 +13,7 @@ data class PostEntity (
     val postTitle : String?,
     val postContent : String?,
     val likeCnt : String?,
-    val commentList : List<CommentEntityForDomain>?,
+//    val commentList : List<CommentEntityForDomain>?,
     val createdDate : String?,
     val postImg : List<PostImg>?,
     val commentCount : String?,

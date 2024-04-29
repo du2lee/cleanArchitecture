@@ -49,7 +49,6 @@ class BoardViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { boards ->
-                    Log.i("duhuiTest", boards.toString())
                     if(boards.data.isNullOrEmpty())
                         _boardList.value = arrayListOf()
                     else

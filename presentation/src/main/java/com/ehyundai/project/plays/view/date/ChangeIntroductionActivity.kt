@@ -18,6 +18,10 @@ class ChangeIntroductionActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         viewModel.setTitle(5)
         binding.vm = viewModel
+
+        binding.btnSignUp.setOnClickListener {
+            finish()
+        }
         context = this
     }
 }

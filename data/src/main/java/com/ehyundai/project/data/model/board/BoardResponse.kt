@@ -27,8 +27,8 @@ data class BoardEntity (
     val postContent : String?,
     @SerializedName("likeCnt")
     val likeCnt : String?,
-    @SerializedName("commentList")
-    val commentList : List<CommentEntity>?,
+//    @SerializedName("commentList")
+//    val commentList : List<CommentEntity>?,
     @SerializedName("createdDate")
     val createdDate : String?,
     @SerializedName("postImg")

@@ -76,18 +76,18 @@ class PostRemoteDataSourceImpl @Inject constructor(private val apiInterface: Api
                             emitter.onSuccess(BoardResponse(data.status, data.code, data.data))
                             Log.i("duhui1", data.toString())
                         } else {
-                            emitter.onError(Throwable("Response body is null"))
+                            emitter.onSuccess(BoardResponse(Constants.ERROR_STATUS, Constants.ERROR_CODE, listOf()))
                         }
                     } else {
                         Log.i("duhui2", response.code().toString())
-                        emitter.onError(Throwable("Error ${response.code()}"))
+                        emitter.onSuccess(BoardResponse(Constants.ERROR_STATUS, Constants.ERROR_CODE, listOf()))
                     }
                 }
 
                 override fun onFailure(call: Call<BoardResponse>, t: Throwable) {
                     // 요청 실패 시 처리
                     Log.i("duhui3", "요청 실패요!")
-                    emitter.onError(t)
+                    emitter.onSuccess(BoardResponse(Constants.ERROR_STATUS, Constants.ERROR_CODE, listOf()))
                 }
             })
         }

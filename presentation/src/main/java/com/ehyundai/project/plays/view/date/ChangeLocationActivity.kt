@@ -18,6 +18,10 @@ class ChangeLocationActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         viewModel.setTitle(4)
         binding.vm = viewModel
+
+        binding.btnSignUp.setOnClickListener {
+            finish()
+        }
         context = this
     }
 }

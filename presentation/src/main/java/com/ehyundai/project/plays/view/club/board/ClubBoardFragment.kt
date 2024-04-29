@@ -45,6 +45,8 @@ class ClubBoardFragment : Fragment() {
     private fun setBoardList(){
 //        val boardList = viewModel.getBoardList()
 
+        viewModel.getBoard(context)
+
         binding.lvBoard.adapter = Board2Adapter(context, boardList)
 
         // 클릭 이벤트

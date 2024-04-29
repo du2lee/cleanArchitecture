@@ -1,7 +1,9 @@
 package com.ehyundai.project.domain.repository
 
+import android.net.Uri
 import com.ehyundai.project.domain.model.Club
 import com.ehyundai.project.domain.model.ClubInfo
+import com.ehyundai.project.domain.model.ClubResponseForDomain
 import io.reactivex.Flowable
 import io.reactivex.Single
 
@@ -17,4 +19,6 @@ interface ClubRepository {
     fun getRemoteClub(companyNo: Int): Single<List<Club>>
 
     fun getClubInfo(clubNo: Int): Single<ClubInfo>
+
+    fun createClub(token: String, clubNm: String, clubDesc: String, clubImg: Uri): Single<ClubResponseForDomain>
 }

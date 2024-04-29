@@ -15,11 +15,17 @@ data class Club(
 )
 
 data class ClubInfo(
-    val clubNo: Int,
-    val company: String,
-    val name: String,
-    val clubDesc: String,
-    val logo: String,
-    val date: String,
-    val members: List<Member>,
+    val clubNo: Int?,
+    val company: String?,
+    val name: String?,
+    val clubDesc: String?,
+    val logo: String?,
+    val date: String?,
+    val members: List<Member>?,
+)
+
+data class ClubResponseForDomain (
+    val status: String?,
+    val code: String?,
+    val data: String?,
 )

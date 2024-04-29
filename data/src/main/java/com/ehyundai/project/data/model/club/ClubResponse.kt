@@ -17,9 +17,19 @@ data class ClubResponse (
 @Serializable
 data class ClubInfoResponse (
     @SerializedName("status")
-    val status: String,
+    val status: String?,
     @SerializedName("code")
-    val code: String,
+    val code: String?,
     @SerializedName("data")
-    val data: ClubInfoEntity,
+    val data: ClubInfoEntity?,
+)
+
+@Serializable
+data class ClubResponse2 (
+    @SerializedName("status")
+    val status: String?,
+    @SerializedName("code")
+    val code: String?,
+    @SerializedName("data")
+    val data: String?,
 )

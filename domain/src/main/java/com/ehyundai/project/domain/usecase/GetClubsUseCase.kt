@@ -1,5 +1,6 @@
 package com.ehyundai.project.domain.usecase
 
+import android.net.Uri
 import com.ehyundai.project.domain.model.Club
 import com.ehyundai.project.domain.model.ClubInfo
 import com.ehyundai.project.domain.repository.ClubRepository
@@ -13,4 +14,6 @@ class GetClubsUseCase @Inject constructor(private val repository: ClubRepository
     fun clickCompany(company: String): Flowable<List<Club>> = repository.getClub(company)
 
     fun clickClub(clubNo: Int): Single<ClubInfo> = repository.getClubInfo(clubNo)
+
+    fun createClub(token: String, clubNm: String, clubDesc: String, clubImg: Uri) = repository.createClub(token, clubNm, clubDesc, clubImg)
 }

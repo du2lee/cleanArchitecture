@@ -1,12 +1,15 @@
 package com.ehyundai.project.data.repository.club
 
+import android.net.Uri
 import android.util.Log
 import com.ehyundai.project.data.mapper.mapperToClub
 import com.ehyundai.project.data.mapper.mapperToClubInfo
+import com.ehyundai.project.data.mapper.mapperToClubResponse
 import com.ehyundai.project.data.repository.club.local.ClubLocalDataSource
 import com.ehyundai.project.data.repository.club.remote.ClubRemoteDataSource
 import com.ehyundai.project.domain.model.Club
 import com.ehyundai.project.domain.model.ClubInfo
+import com.ehyundai.project.domain.model.ClubResponseForDomain
 import com.ehyundai.project.domain.repository.ClubRepository
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -61,4 +64,17 @@ class ClubRepositoryImpl @Inject constructor(
             Single.just(mapperToClubInfo((it.data)))
         }
     }
+
+    override fun createClub(
+        token: String,
+        clubNm: String,
+        clubDesc: String,
+        clubImg: Uri
+    ): Single<ClubResponseForDomain> {
+        return clubRemoteDataSource.createClub(token, clubNm, clubDesc, clubImg).flatMap {
+            Single.just(mapperToClubResponse((it)))
+        }
+    }
+
+
 }

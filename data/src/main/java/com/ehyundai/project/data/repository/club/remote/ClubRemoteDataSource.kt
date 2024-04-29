@@ -1,7 +1,9 @@
 package com.ehyundai.project.data.repository.club.remote
 
+import android.net.Uri
 import com.ehyundai.project.data.model.club.ClubInfoResponse
 import com.ehyundai.project.data.model.club.ClubResponse
+import com.ehyundai.project.data.model.club.ClubResponse2
 import io.reactivex.Single
 
 /**
@@ -14,4 +16,6 @@ interface ClubRemoteDataSource {
     fun getSearchAll(): Single<ClubResponse>
 
     fun getSearchClubInfo(clubNo: Int): Single<ClubInfoResponse>
+
+    fun createClub(token: String, clubNm: String, clubDesc: String, clubImg: Uri): Single<ClubResponse2>
 }

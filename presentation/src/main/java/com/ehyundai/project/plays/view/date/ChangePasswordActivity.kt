@@ -18,6 +18,10 @@ class ChangePasswordActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         viewModel.setTitle(0)
         binding.vm = viewModel
+
+        binding.btnSignUp.setOnClickListener {
+            finish()
+        }
         context = this
     }
 }
