@@ -5,4 +5,6 @@ import io.reactivex.Single
 
 interface PostRemoteDataSource {
     fun getPost(token: String, clubNo: String): Single<BoardResponse>
+
+    fun getPost(token: String): Single<BoardResponse> // 본인 동호회 게시글 조회
 }

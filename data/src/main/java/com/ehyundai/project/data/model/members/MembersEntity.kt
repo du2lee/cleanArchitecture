@@ -28,7 +28,7 @@ data class AuthResponse (
     @SerializedName("code")
     val code: String,
     @SerializedName("data")
-    val data: String,
+    val data: String?,
 )
 
 @Serializable

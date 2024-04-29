@@ -11,4 +11,6 @@ interface MemberRemoteDataSource {
     fun checkDuplicatedNickname(nickname: String): Single<BaseResponse>
     fun signUp(email: String, pwd: String, nickname: String, companyNo: String): Single<BaseResponse>
     fun login(email: String, pwd: String): Single<LoginResponse>
+
+//    fun editInfo(pwd: String?, nickname: String?, companyNo: String?, part: String?, area: String?): Single<AuthResponse>
 }

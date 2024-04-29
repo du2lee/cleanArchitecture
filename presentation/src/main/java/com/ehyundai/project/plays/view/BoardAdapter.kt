@@ -32,9 +32,12 @@ class BoardAdapter(val context: Context, private val boardList: ArrayList<PostEn
         val board = boardList[position]
 
         // Todo 값 설정 필요
-        title.text = board.postTitle
-        text.text = board.postContent
-        Glide.with(context).load(board.postImg[0].url).into(img)
+        if(!board.postTitle.isNullOrBlank())
+            title.text = board.postTitle
+        if(!board.postContent.isNullOrBlank())
+            text.text = board.postContent
+        if(!board.postImg.isNullOrEmpty())
+            Glide.with(context).load(board.postImg!![0].url).into(img)
 
         return mBinding!!.root
     }

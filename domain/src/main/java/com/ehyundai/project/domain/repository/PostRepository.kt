@@ -5,4 +5,5 @@ import io.reactivex.Single
 
 interface PostRepository {
     fun getPost(token: String, clubNo: String): Single<Post>
+    fun getPost(token: String): Single<Post>
 }

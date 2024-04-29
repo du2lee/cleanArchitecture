@@ -10,45 +10,45 @@ data class BoardResponse (
     @SerializedName("code")
     val code: String,
     @SerializedName("data")
-    val data: List<BoardEntity>,
+    val data: List<BoardEntity>?,
 )
 
 @Serializable
 data class BoardEntity (
     @SerializedName("postNo")
-    val postNo : String,
+    val postNo : String?,
     @SerializedName("nickname")
-    val nickname : String,
+    val nickname : String?,
     @SerializedName("companyNm")
-    val companyNm : String,
+    val companyNm : String?,
     @SerializedName("postTitle")
-    val postTitle : String,
+    val postTitle : String?,
     @SerializedName("postContent")
-    val postContent : String,
+    val postContent : String?,
     @SerializedName("likeCnt")
-    val likeCnt : String,
+    val likeCnt : String?,
     @SerializedName("commentList")
-    val commentList : List<CommentEntity>,
+    val commentList : List<CommentEntity>?,
     @SerializedName("createdDate")
-    val createdDate : String,
+    val createdDate : String?,
     @SerializedName("postImg")
-    val postImg : List<BoardImg>,
+    val postImg : List<BoardImg>?,
     @SerializedName("commentCount")
-    val commentCount : String,
+    val commentCount : String?,
 )
 
 @Serializable
 data class CommentEntity (
     @SerializedName("postNo")
-    val postNo : String,
+    val postNo : String?,
 )
 
 @Serializable
 data class BoardImg (
     @SerializedName("postImgNo")
-    val postImgNo : String,
+    val postImgNo : String?,
     @SerializedName("postNo")
-    val postNo : String,
+    val postNo : String?,
     @SerializedName("url")
-    val url : String,
+    val url : String?,
 )

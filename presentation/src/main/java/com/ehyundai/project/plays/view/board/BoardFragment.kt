@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.ehyundai.project.plays.databinding.FragmentBoardBinding
 import com.ehyundai.project.plays.view.BoardAdapter
-import com.ehyundai.project.plays.view.ClubAdapter
 import com.ehyundai.project.plays.view.main.MainActivity
 
 class BoardFragment : Fragment() {
@@ -32,7 +31,7 @@ class BoardFragment : Fragment() {
         binding = FragmentBoardBinding.inflate(layoutInflater)
         binding.vm = viewModel
 
-        viewModel.getBoard(context, "1")
+        viewModel.getBoard(context)
         initViewModelCallback()
 
         return binding.root
@@ -40,6 +39,12 @@ class BoardFragment : Fragment() {
 
     private fun setBoardList(){
         val boardList = viewModel.getBoardList()
+
+        if(boardList.isNullOrEmpty())
+            binding.ivNotBoard.visibility = View.VISIBLE
+        else
+            binding.ivNotBoard.visibility = View.GONE
+
 
         binding.lvBoard.adapter = boardList?.let { BoardAdapter(context, it) }
 

@@ -5,4 +5,5 @@ import javax.inject.Inject
 
 class GetBoardUseCase @Inject constructor(private val repository: PostRepository) {
     fun getPost(token: String, clubNo: String) = repository.getPost(token, clubNo)
+    fun getPost(token: String) = repository.getPost(token)
 }

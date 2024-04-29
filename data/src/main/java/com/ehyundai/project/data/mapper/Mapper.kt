@@ -110,7 +110,10 @@ fun mapperToPost(response: BoardResponse): Post {
     )
 }
 
-fun mapperToPostEntity(response: List<BoardEntity>): List<PostEntity>{
+fun mapperToPostEntity(response: List<BoardEntity>?): List<PostEntity>{
+    if(response.isNullOrEmpty()){
+        return listOf()
+    }
     return response.toList().map {
         PostEntity(
             it.postNo?: "",
@@ -135,7 +138,10 @@ fun mapperToCommentEntity(response: List<CommentEntity>): List<CommentEntityForD
     }
 }
 
-fun mapperToPostImg(response: List<BoardImg>): List<PostImg>{
+fun mapperToPostImg(response: List<BoardImg>?): List<PostImg>{
+    if(response.isNullOrEmpty()){
+        return listOf()
+    }
 
     return response.toList().map{
         PostImg(
@@ -143,6 +149,5 @@ fun mapperToPostImg(response: List<BoardImg>): List<PostImg>{
         it.postNo?: "",
         it.url?: "")
     }
-
 }
 

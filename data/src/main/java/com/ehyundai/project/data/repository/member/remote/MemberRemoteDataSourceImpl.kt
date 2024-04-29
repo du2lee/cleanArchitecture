@@ -41,4 +41,21 @@ class MemberRemoteDataSourceImpl @Inject constructor(private val apiInterface: A
         return apiInterface.login(requestBody)
     }
 
+//    override fun editInfo(
+//        pwd: String?,
+//        nickname: String?,
+//        companyNo: String?,
+//        part: String?,
+//        area: String?
+//    ): Single<AuthResponse> {
+//        val jsonObject = JSONObject()
+//        if(!pwd.isNullOrBlank())
+//            jsonObject.put("pwd", pwd)
+//
+//        jsonObject.put("nickname", nickname)
+//        jsonObject.put("companyNo", companyNo)
+//        val requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString())
+//        return apiInterface.signUp(requestBody)
+//    }
+
 }

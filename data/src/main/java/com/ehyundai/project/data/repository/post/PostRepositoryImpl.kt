@@ -18,4 +18,10 @@ class PostRepositoryImpl @Inject constructor(
             Single.just(mapperToPost(it))
         }
     }
+
+    override fun getPost(token: String): Single<Post> {
+        return postRemoteDataSource.getPost(token).flatMap {
+            Single.just(mapperToPost(it))
+        }
+    }
 }
